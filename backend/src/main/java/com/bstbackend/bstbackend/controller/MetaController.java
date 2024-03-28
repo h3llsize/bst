@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/meta")
 public class MetaController {
-
-
     private final MetaService metaService;
 
     public MetaController(MetaService metaService) {

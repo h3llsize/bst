@@ -10,7 +10,6 @@ public class ProductListSearchRequest {
     private Long categoryId;
     private String query;
     private Integer page;
-    private String slug;
     private List<FilterCategoryRequestDTO> filters;
 
     public String getQueryNonNull() {

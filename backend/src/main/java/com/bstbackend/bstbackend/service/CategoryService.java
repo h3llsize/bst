@@ -6,7 +6,6 @@ import com.bstbackend.bstbackend.repo.CatalogCategoryRepository;
 import com.bstbackend.bstbackend.repo.CatalogSubcategoryRepository;
 import com.bstbackend.bstbackend.repo.FilterCategoryRepository;
 import com.bstbackend.bstbackend.repo.MainCatalogCategoryRepository;
-import jakarta.persistence.EntityManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -28,17 +27,14 @@ public class CategoryService {
 
     private final CityService cityService;
 
-    private final EntityManager entityManager;
 
-
-    public CategoryService(CatalogCategoryRepository categoryRepository, CatalogSubcategoryRepository catalogSubcategoryRepository, FilterCategoryRepository filterCategoryRepository, CatalogMapper catalogMapper, MainCatalogCategoryRepository mainCatalogCategoryRepository, CityService cityService, EntityManager entityManager) {
+    public CategoryService(CatalogCategoryRepository categoryRepository, CatalogSubcategoryRepository catalogSubcategoryRepository, FilterCategoryRepository filterCategoryRepository, CatalogMapper catalogMapper, MainCatalogCategoryRepository mainCatalogCategoryRepository, CityService cityService) {
         this.categoryRepository = categoryRepository;
         this.catalogSubcategoryRepository = catalogSubcategoryRepository;
         this.filterCategoryRepository = filterCategoryRepository;
         this.catalogMapper = catalogMapper;
         this.mainCatalogCategoryRepository = mainCatalogCategoryRepository;
         this.cityService = cityService;
-        this.entityManager = entityManager;
     }
 
     public List<CatalogCategoryDTO> getAllCatalogCategoryBySlug(String slug) {
@@ -59,11 +55,6 @@ public class CategoryService {
 
     public MainCatalogCategoryDTO getMainCatalogCategory(String slug, String cityName) {
         return catalogMapper.toDTOWithCityName(mainCatalogCategoryRepository.findBySlug(slug), cityService.getDeclinsionCityName(cityName));
-    }
-
-
-    public Page<CatalogSubCategoryDTO> listCategoriesPage(int page) {
-        return catalogSubcategoryRepository.findAll(Pageable.ofSize(5).withPage(page)).map(catalogMapper::toDto);
     }
 
     public List<FilterCategoryDTO> listFilters(Long categoryId) {

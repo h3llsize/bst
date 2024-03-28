@@ -6,11 +6,9 @@ import com.bstbackend.bstbackend.dtos.FilterCategoryRequestDTO;
 import com.bstbackend.bstbackend.dtos.ProductListSearchRequest;
 import com.bstbackend.bstbackend.dtos.mapper.CatalogMapper;
 import com.bstbackend.bstbackend.entity.CatalogProduct;
-import com.bstbackend.bstbackend.entity.FilterCategory;
 import com.bstbackend.bstbackend.entity.FilterCategoryOption;
 import com.bstbackend.bstbackend.repo.CatalogProductsRepository;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
 import org.springframework.data.domain.Page;
@@ -26,7 +24,7 @@ import java.util.Locale;
 public class ProductService {
 
     private final CityService cityService;
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     private final CatalogProductsRepository productsRepository;
 
@@ -39,10 +37,6 @@ public class ProductService {
         this.catalogMapper = catalogMapper;
         this.entityManager = entityManager;
         this.cityService = cityService;
-    }
-
-    public List<CatalogProductDTO> listProductsByCatalogId(Long id) {
-        return productsRepository.findAllByCatalogCategory_Id(id).stream().map(catalogMapper::toDto).toList();
     }
 
     public Page<CatalogProductDTO> listProducts(ProductListSearchRequest productListSearchRequest) {

@@ -10,8 +10,6 @@ import java.util.Objects;
 
 @Component
 public class CityService {
-
-
     private final CityRepository cityRepository;
 
     private final CatalogMapper catalogMapper;

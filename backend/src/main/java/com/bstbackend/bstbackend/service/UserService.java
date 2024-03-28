@@ -4,7 +4,6 @@ import com.bstbackend.bstbackend.dtos.UserRequestDTO;
 import com.bstbackend.bstbackend.dtos.mapper.CatalogMapper;
 import com.bstbackend.bstbackend.entity.UserRequest;
 import com.bstbackend.bstbackend.repo.UserRequestRepository;
-import org.apache.commons.mail.EmailException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -21,7 +20,7 @@ public class UserService {
         this.mailService = mailService;
     }
 
-    public void saveUserRequest(UserRequestDTO userRequestDTO) throws EmailException {
+    public void saveUserRequest(UserRequestDTO userRequestDTO) {
         UserRequest userRequest = catalogMapper.toEntity(userRequestDTO);
 
         mailService.sendUserRequest(userRequest);

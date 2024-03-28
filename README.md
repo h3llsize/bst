@@ -1,2 +1,2 @@
-# bst
-Main site project
+# Основной сайт БСТ
+todo: Написать нормальный README.md
