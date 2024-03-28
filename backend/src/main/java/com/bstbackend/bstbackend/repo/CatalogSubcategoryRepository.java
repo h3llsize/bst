@@ -24,4 +24,6 @@ public interface CatalogSubcategoryRepository extends JpaRepository<CatalogSubCa
     @Query("select distinct cs from CatalogSubCategory cs right join CatalogProduct cp ON cp.catalogCategory.id = cs.id where lower(cp.name) like :query")
     Page<CatalogSubCategory> findByQuery(@Param("query") String query, Pageable pageable);
 
+    @Query("select c.flag from CatalogSubCategory c")
+    List<String> categorySitemapRequest();
 }

@@ -38,4 +38,7 @@ public interface CatalogProductsRepository extends JpaRepository<CatalogProduct,
 
     @Query("select count(c) from CatalogProduct c where c.catalogCategory.id = :categoryId")
     Long countAll(@Param("categoryId") Long categoryId);
+
+    @Query("select c.slug from CatalogProduct c order by random() limit 5000")
+    List<String> findTop100ProductsPerSubcategory();
 }

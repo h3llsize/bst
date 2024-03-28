@@ -20,7 +20,7 @@ public class FilterCategory {
     @NonNull
     private String name;
 
-    @OneToMany(mappedBy = "filterCategory", cascade = CascadeType.MERGE, orphanRemoval = true)
+    @OneToMany(mappedBy = "filterCategory", cascade = CascadeType.MERGE, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<FilterCategoryOption> options = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.MERGE)

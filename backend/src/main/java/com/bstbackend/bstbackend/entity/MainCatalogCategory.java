@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "main_catalog_category")
 @Getter
@@ -17,4 +19,7 @@ public class MainCatalogCategory {
 
     @Column(unique = true)
     private String slug;
+
+    @OneToMany(mappedBy = "mainCatalogCategory")
+    private List<CatalogCategory> catalogCategories;
 }

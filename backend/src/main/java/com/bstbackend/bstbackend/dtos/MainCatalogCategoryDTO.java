@@ -2,6 +2,8 @@ package com.bstbackend.bstbackend.dtos;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class MainCatalogCategoryDTO {
     private String name;
@@ -9,4 +11,6 @@ public class MainCatalogCategoryDTO {
     private Long id;
 
     private String slug;
+
+    private List<CatalogCategoryDTO> categories;
 }

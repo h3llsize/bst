@@ -61,6 +61,7 @@ public class CategoryService {
         return filterCategoryRepository.findAllByCatalogCategory_Id(categoryId).stream().map(catalogMapper::toDto).toList();
     }
 
+
     public Page<CatalogSubCategoryDTO> findSubcategories(String query, Integer page, String cityName) {
         if (query.isEmpty())
         {

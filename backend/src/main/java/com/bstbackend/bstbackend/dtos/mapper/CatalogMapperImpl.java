@@ -191,6 +191,7 @@ public class CatalogMapperImpl implements CatalogMapper {
         mainCatalogCategoryDTO.setName(mainCatalogCategory.getName());
         mainCatalogCategoryDTO.setSlug(mainCatalogCategory.getSlug());
         mainCatalogCategoryDTO.setId(mainCatalogCategory.getId());
+        mainCatalogCategoryDTO.setCategories(mainCatalogCategory.getCatalogCategories().stream().map(this::toDto).toList());
 
         return mainCatalogCategoryDTO;
     }
@@ -199,8 +200,8 @@ public class CatalogMapperImpl implements CatalogMapper {
     @Override
     public CityDTO toDto(City city) {
         CityDTO cityDTO = new CityDTO();
-        cityDTO.setCityName(cityDTO.getCityName());
-        cityDTO.setId(city.getId());
+        cityDTO.setName(city.getCityName());
+        cityDTO.setDomain(city.getId());
         return cityDTO;
     }
 
