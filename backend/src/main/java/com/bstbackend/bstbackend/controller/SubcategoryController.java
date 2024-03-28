@@ -40,4 +40,9 @@ public class SubcategoryController {
     public CatalogSubCategoryDTO getSubCategoryBySlug(@Param("slug") String slug, HttpServletRequest httpServletRequest) {
         return subcategoryLogicHandler.getSubCategoryBySlug(slug, httpServletRequest);
     }
+
+    @GetMapping("/subcategory/start")
+    public Page<CatalogSubcategoryItems> listSubcategoriesStart(@Param("query") String query, Integer page, HttpServletRequest httpServletRequest) {
+        return catalogService.findSubcategoriesStart(query, page, httpServletRequest.getHeader("city"));
+    }
 }

@@ -12,6 +12,8 @@ public interface CatalogMapper {
 
     CatalogCategoryDTO toDtoWithCityName(CatalogCategory catalogCategory, String cityName);
 
+    CatalogSubcategoryItems toDtoWithCityNameStart(CatalogSubCategory catalogSubCategory, String cityName, List<CatalogProduct> catalogProducts);
+
     CatalogSubCategoryDTO toDto(CatalogSubCategory catalogSubCategory);
 
     CatalogSubCategoryDTO toDtoWithCityName(CatalogSubCategory catalogSubCategory, String cityName);

@@ -2,10 +2,7 @@ package com.bstbackend.bstbackend.service;
 
 import com.bstbackend.bstbackend.dtos.*;
 import com.bstbackend.bstbackend.dtos.mapper.CatalogMapper;
-import com.bstbackend.bstbackend.repo.CatalogCategoryRepository;
-import com.bstbackend.bstbackend.repo.CatalogSubcategoryRepository;
-import com.bstbackend.bstbackend.repo.FilterCategoryRepository;
-import com.bstbackend.bstbackend.repo.MainCatalogCategoryRepository;
+import com.bstbackend.bstbackend.repo.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -27,14 +24,17 @@ public class CategoryService {
 
     private final CityService cityService;
 
+    private final CatalogProductsRepository catalogProductsRepository;
 
-    public CategoryService(CatalogCategoryRepository categoryRepository, CatalogSubcategoryRepository catalogSubcategoryRepository, FilterCategoryRepository filterCategoryRepository, CatalogMapper catalogMapper, MainCatalogCategoryRepository mainCatalogCategoryRepository, CityService cityService) {
+
+    public CategoryService(CatalogCategoryRepository categoryRepository, CatalogSubcategoryRepository catalogSubcategoryRepository, FilterCategoryRepository filterCategoryRepository, CatalogMapper catalogMapper, MainCatalogCategoryRepository mainCatalogCategoryRepository, CityService cityService, CatalogProductsRepository catalogProductsRepository) {
         this.categoryRepository = categoryRepository;
         this.catalogSubcategoryRepository = catalogSubcategoryRepository;
         this.filterCategoryRepository = filterCategoryRepository;
         this.catalogMapper = catalogMapper;
         this.mainCatalogCategoryRepository = mainCatalogCategoryRepository;
         this.cityService = cityService;
+        this.catalogProductsRepository = catalogProductsRepository;
     }
 
     public List<CatalogCategoryDTO> getAllCatalogCategoryBySlug(String slug) {
@@ -78,5 +78,17 @@ public class CategoryService {
 
     public CatalogSubCategoryDTO findCatalogSubCategoryBySlug(String slug, String cityPattern) {
         return catalogMapper.toDtoWithCityName(catalogSubcategoryRepository.findByFlag(slug), cityService.getDeclinsionCityName(cityPattern));
+    }
+
+    public Page<CatalogSubcategoryItems> findSubcategoriesStart(String query, Integer page, String cityName) {
+        if (query.isEmpty())
+        {
+            return catalogSubcategoryRepository.findAll(Pageable.ofSize(5).withPage(page))
+                    .map(c -> catalogMapper.toDtoWithCityNameStart(c, cityService.getDeclinsionCityName(cityName), c.getProducts().stream().limit(5).toList()));
+        }
+
+
+        return catalogSubcategoryRepository.findByQuery("%" + query.toLowerCase(Locale.ROOT) + "%", Pageable.ofSize(5).withPage(page))
+                .map(c -> catalogMapper.toDtoWithCityNameStart(c, cityService.getDeclinsionCityName(cityName), catalogProductsRepository.getAllByQuery(c.getId(), Pageable.ofSize(5).withPage(0), "%" + query.toLowerCase(Locale.ROOT) + "%").toList()));
     }
 }

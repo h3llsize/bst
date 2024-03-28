@@ -47,4 +47,13 @@ public interface SubcategoryLogicHandler {
      * @return
      */
     CatalogSubCategoryDTO getSubCategoryBySlug(String slug, HttpServletRequest httpServletRequest);
+
+    /**
+     * Стартовая загрузка основной страницы
+     * @param query
+     * @param page
+     * @param httpServletRequest
+     * @return
+     */
+    Page<CatalogSubcategoryItems> listSubcategoriesStart(String query, Integer page, HttpServletRequest httpServletRequest);
 }

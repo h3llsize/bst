@@ -45,6 +45,17 @@ public class CatalogMapperImpl implements CatalogMapper {
     }
 
     @Override
+    public CatalogSubcategoryItems toDtoWithCityNameStart(CatalogSubCategory catalogSubCategory, String cityName, List<CatalogProduct> catalogProducts) {
+        CatalogSubcategoryItems catalogSubCategoryDTO = new CatalogSubcategoryItems();
+        catalogSubCategoryDTO.setId(catalogSubCategory.getId());
+        catalogSubCategoryDTO.setSlug(catalogSubCategory.getFlag());
+        catalogSubCategoryDTO.setName(catalogSubCategory.getName() + " в " + cityName);
+        catalogSubCategoryDTO.setProducts(catalogProducts.stream().map(this::toDto).toList());
+
+        return catalogSubCategoryDTO;
+    }
+
+    @Override
     public CatalogSubCategoryDTO toDto(CatalogSubCategory catalogSubCategory) {
         CatalogSubCategoryDTO catalogSubCategoryDTO = new CatalogSubCategoryDTO();
         catalogSubCategoryDTO.setId(catalogSubCategory.getId());
