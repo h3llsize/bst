@@ -1,0 +1,42 @@
+# Logs
+.env
+.nuxt
+.output
+logs
+*.log
+npm-debug.log*
+html
+
+node_modules
+dist
+dist-ssr
+*.local
+auto-imports.d.ts
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# pnpm
+pnpm-debug.log*
+
+
+# Vitest coverage
+coverage/
+
+# Special File
+.npmrc
+.vitestcache
+.eslintcache
+e2e-**
+playwright/.auth/**
+stats.html
+.env

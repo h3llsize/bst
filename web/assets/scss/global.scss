@@ -1,0 +1,48 @@
+@import './normalize.scss';
+@import './fonts.scss';
+
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  border: none;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  font-family: 'Montserrat', sans-serif;
+  color: #062120;
+}
+
+body {
+  position: relative;
+
+  text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+
+  min-height: calc(100vh + vw(75));
+  padding-bottom: vw(75);
+  background: #f3f3f3;
+
+  @include xxl {
+    min-height: calc(100vh + xxl-vw(75));
+    padding-bottom: xxl-vw(75);
+  }
+
+  @include lg {
+    min-height: calc(100vh + lg-vw(75));
+    padding-bottom: lg-vw(75);
+  }
+
+  @include sm {
+    min-height: calc(100vh + sm-vw(75));
+    padding-bottom: sm-vw(75);
+  }
+}

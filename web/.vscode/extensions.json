@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "aaron-bond.better-comments",
+    "vue.volar",
+    "vue.vscode-typescript-vue-plugin",
+    "usernamehw.errorlens"
+  ],
+  "unwantedRecommendations": [
+    "octref.vetur",
+    "esbenp.prettier-vscode"
+  ]
+}
