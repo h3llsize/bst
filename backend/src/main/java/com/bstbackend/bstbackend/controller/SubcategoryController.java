@@ -43,6 +43,6 @@ public class SubcategoryController {
 
     @GetMapping("/subcategory/start")
     public Page<CatalogSubcategoryItems> listSubcategoriesStart(@Param("query") String query, Integer page, HttpServletRequest httpServletRequest) {
-        return catalogService.findSubcategoriesStart(query, page, httpServletRequest.getHeader("city"));
+        return subcategoryLogicHandler.listSubcategoriesStart(query, page, httpServletRequest);
     }
 }
