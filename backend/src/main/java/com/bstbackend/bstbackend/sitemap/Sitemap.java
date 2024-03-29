@@ -11,7 +11,6 @@ public class Sitemap {
 
     public Sitemap(String url) {
         this.url = url;
-        sitemapObjects.addAll(DefaultSitemaps.sitemapObjects);
     }
 
     public void add(SitemapObject sitemapObject) {
