@@ -13,8 +13,9 @@ const category = ref<Category>({
   id: 0,
   name: '',
   slug: '',
-  catalogSubCategories: [],
   imagePath: '',
+  products: [],
+  catalogSubCategories: [],
 })
 
 async function loadCategory() {

@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import { RouteNames } from "~/types/routes";
+import { RouteNames } from '#/types/routes'
 
 const contacts = [{
   name: 'Телефон',

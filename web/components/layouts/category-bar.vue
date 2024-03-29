@@ -3,9 +3,8 @@ import CategoryNav from '#/components/pages/category/category-nav.vue'
 import CategoryDropdown from '#/components/pages/category/category-dropdown.vue'
 
 import type { HoverData } from '#/types/common'
-import { Services } from '~/utils/api'
-import { ref } from 'vue'
-import type { MainCategory } from '~/types/models'
+import { Services } from '#/utils/api'
+import type { MainCategory } from '#/types/models'
 
 const store = useStore()
 
@@ -19,14 +18,15 @@ const categories = ref<MainCategory[]>([])
 function navHover(data: HoverData) {
   dropdownData.value = data
 }
-const getCategories = async () => {
-   await Services.getMainCategories().then((data) => {
-      categories.value = data
-      store?.getCategories(data)
-    })
+
+async function loadCategories() {
+  const data = await Services.getMainCategories()
+
+  categories.value = data
+  store.categories = data
 }
 
-await getCategories()
+await loadCategories()
 </script>
 
 <template>

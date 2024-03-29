@@ -44,7 +44,7 @@ async function submit() {
   dto.tel = inputs.tel.value
   dto.email = inputs.email.value
   dto.comment = inputs.comment.value
-  dto.cart = props.hasCart ? store?.getCart : []
+  dto.cart = props.hasCart ? store.getCart : []
 
   try {
     await Services.postFeedback(dto)

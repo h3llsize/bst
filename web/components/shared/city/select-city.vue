@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import CityModal from './city-modal.vue'
-import { Services } from "~/utils/api";
+import { Services } from '#/utils/api'
 
 const modal = ref<boolean>(false)
 const subdomain = useCookie('subdomain').value ?? useStore().subdomain
@@ -9,9 +9,10 @@ const cities = await Services.getCities()
 
 const getCityName = computed<string>(() => {
   const city = cities.filter(
-    (city) => city.domain === useCookie('subdomain').value
+    city => city.domain === useCookie('subdomain').value,
   )
-  if (city?.length > 0) return city[0].name
+  if (city?.length > 0)
+    return city[0].name
   return ''
 })
 </script>

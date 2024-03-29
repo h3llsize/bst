@@ -12,6 +12,7 @@ const slug = Array.isArray(route.params.id) ? route.params.id[0] : route.params.
 const categories = ref<Category[]>([])
 
 const newCategories = computed<SubCategory[]>(() => {
+  // eslint-disable-next-line unused-imports/no-unused-vars
   return categories.value.map(({ catalogSubCategories, ...rest }) => rest)
 })
 async function loadCategories() {

@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { RouteNames } from "#/types/routes";
+import { RouteNames } from '#/types/routes'
 
 const slider = [{
   heading: 'Выгодные предложения',

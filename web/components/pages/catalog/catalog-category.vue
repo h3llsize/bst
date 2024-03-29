@@ -1,7 +1,7 @@
 <script lang='ts' setup>
 import ProductCard from '#/components/shared/product/product-card.vue'
 import { RoutePaths } from '#/types/routes'
-import type { SubCategory } from "#/types/models";
+import type { SubCategory } from '#/types/models'
 
 interface Props {
   category: SubCategory
@@ -45,7 +45,7 @@ defineProps<Props>()
 </template>
 
 <style lang='scss' scoped>
-.more-link{
+.more-link {
   font-weight: 550;
   color: #0e88f7;
   cursor: pointer;

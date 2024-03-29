@@ -1,5 +1,4 @@
 import type { CartProduct, City, MainCategory } from '#/types/models'
-import { Services } from '~/utils/api'
 
 interface State {
   subdomain: string
@@ -10,17 +9,11 @@ interface State {
   categories: MainCategory[]
 }
 
-function getCart() {
-  const cart = useCookie(CART_KEY).value
-
-  return cart ? JSON.parse(cart) : []
-}
-
 export const useStore = defineStore('bst-store', {
   state: (): State => ({
     subdomain: '',
     host: '',
-    cart: getCart(),
+    cart: [],
     metas: [],
     cities: [],
     categories: [],
@@ -30,7 +23,7 @@ export const useStore = defineStore('bst-store', {
       const cart = this.cart.filter(product => product.amount > 0)
       this.cart = cart
 
-      useCookie(CART_KEY).value = JSON.stringify(this.cart)
+      useCookie(CART_KEY, { sameSite: true }).value = JSON.stringify(this.cart)
 
       return this.cart
     },
@@ -42,10 +35,6 @@ export const useStore = defineStore('bst-store', {
     },
   },
   actions: {
-    setDomainData(subdomain: string, host: string) {
-      this.subdomain = subdomain
-      this.host = host
-    },
     addProduct(id: number, amount: number) {
       const index = this.cart.findIndex(product => product.id === id)
 
@@ -59,11 +48,11 @@ export const useStore = defineStore('bst-store', {
         })
       }
 
-      useCookie(CART_KEY).value = JSON.stringify(this.cart)
+      useCookie(CART_KEY, { sameSite: true }).value = JSON.stringify(this.cart)
     },
     deleteProduct(id: number) {
       this.cart = this.cart.filter(product => product.id !== id)
-      useCookie(CART_KEY).value = JSON.stringify(this.cart)
+      useCookie(CART_KEY, { sameSite: true }).value = JSON.stringify(this.cart)
     },
     getProduct(id: number): CartProduct {
       const product = this.cart.filter(product => product.id === id)
@@ -77,14 +66,11 @@ export const useStore = defineStore('bst-store', {
     },
     getCartAction(): CartProduct[] {
       this.cart = this.cart.filter(product => product.amount > 0)
-      useCookie(CART_KEY).value = JSON.stringify(this.cart)
+      useCookie(CART_KEY, { sameSite: true }).value = JSON.stringify(this.cart)
       return this.cart
     },
     addCities(cities: City[]) {
       this.cities = cities
-    },
-    getCategories(categories: MainCategory[]) {
-      this.categories = categories
     },
   },
 })
