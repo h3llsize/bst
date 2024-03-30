@@ -4,9 +4,6 @@ plugins {
     id("io.spring.dependency-management") version "1.1.4"
 }
 
-group = "com.bstbackend"
-version = "0.0.1-SNAPSHOT"
-
 java {
     sourceCompatibility = JavaVersion.VERSION_17
 }
@@ -31,7 +28,6 @@ dependencies {
     // https://mvnrepository.com/artifact/org.mapstruct/mapstruct
     implementation("org.mapstruct:mapstruct:1.5.5.Final")
     implementation("org.apache.commons:commons-email:1.6.0")
-
 }
 
 tasks.withType<Test> {
