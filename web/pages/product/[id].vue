@@ -1,10 +1,11 @@
 <script lang='ts' setup>
-import ProductOptions from "#/components/shared/product/product-options.vue";
-import ProductAbout from "#/components/shared/product/product-about.vue";
-import ProductSimiliar from "#/components/shared/product/product-similiar.vue";
-import { CatalogPostDTO, Services } from "#/utils/api";
-import { RouteNames } from "#/types/routes";
-import type { Product } from "#/types/models";
+import ProductOptions from '#/components/shared/product/product-options.vue'
+import ProductAbout from '#/components/shared/product/product-about.vue'
+import ProductSimiliar from '#/components/shared/product/product-similiar.vue'
+import FeedbackModal from '#/components/shared/feedback/feedback-modal.vue'
+import { CatalogPostDTO, Services } from '#/utils/api'
+import { RouteNames } from '#/types/routes'
+import type { Product } from '#/types/models'
 
 const route = useRoute()
 const router = useRouter()
@@ -12,6 +13,8 @@ const store = useStore()
 
 const slug = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
 
+const feedbackModal = ref<boolean>(false)
+const products = ref<Product[]>([])
 const product = ref<Product>({
   id: 0,
   slug: '',
@@ -26,9 +29,7 @@ const product = ref<Product>({
   range: null,
 })
 
-const products = ref<Product[]>([])
-
-const feedbackModal = ref<boolean>(false)
+const productAmount = computed(() => store.getProduct(product.value.id).amount)
 
 async function loadProduct() {
   try {
@@ -60,10 +61,10 @@ async function loadProducts() {
 }
 
 function changeAmount(amount: number) {
-  store?.addProduct(product.value.id, store?.getProduct(product.value.id).amount + amount)
+  store.addProduct(product.value.id, store.getProduct(product.value.id).amount + amount)
 }
 
-void (await useLoadMeta({ slug: slug, type: RouteNames.Product })).applySeoMeta()
+void (await useLoadMeta({ slug, type: RouteNames.Product })).applySeoMeta()
 
 await loadProduct()
 await loadProducts()
@@ -98,8 +99,8 @@ definePageMeta({
           />
 
           <div class="product__btn-box">
-            <button
-              v-if="store?.getProduct(product.id).amount"
+            <div
+              v-if="productAmount"
               class="product-card__count"
               @click.prevent="''"
             >
@@ -110,7 +111,7 @@ definePageMeta({
                 <span class="arrow arrow_minus" />
               </button>
               <span class="amount">
-                {{ store?.getProduct(product.id).amount }}
+                {{ productAmount }}
               </span>
               <button
                 class="btn"
@@ -118,7 +119,7 @@ definePageMeta({
               >
                 <span class="arrow arrow_plus" />
               </button>
-            </button>
+            </div>
 
             <button
               v-else

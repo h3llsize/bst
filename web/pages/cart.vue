@@ -1,12 +1,12 @@
 <script lang='ts' setup>
-import ProductCard from "#/components/shared/product/product-card.vue";
-import Loader from "#/components/shared/loader.vue";
+import ProductCard from '#/components/shared/product/product-card.vue'
+import Loader from '#/components/shared/loader.vue'
 
-import Feedback from "#/components/shared/feedback/feedback.vue";
+import Feedback from '#/components/shared/feedback/feedback.vue'
 
-import { Services } from "#/utils/api";
-import type { Product } from "#/types/models";
-import { RouteNames } from "~/types/routes";
+import { Services } from '#/utils/api'
+import type { Product } from '#/types/models'
+import { RouteNames } from '#/types/routes'
 
 const store = useStore()
 
@@ -14,7 +14,7 @@ const products = ref<Product[]>([])
 const showLoader = ref<boolean>(true)
 
 try {
-  const values = await Promise.all(store?.getCartAction().map(product => Services.getProduct(product.id)))
+  const values = await Promise.all(store.getCartAction().map(product => Services.getProduct(product.id)))
 
   products.value = values.filter(el => !!el.id) as unknown as Product[]
   showLoader.value = false

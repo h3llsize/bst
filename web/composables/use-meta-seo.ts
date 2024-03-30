@@ -1,6 +1,6 @@
+import { useSeoMeta } from '@unhead/vue'
 import { MetaPostDTO, Services } from '#/utils/api'
 import type { MetaTag } from '#/types/common'
-import { useSeoMeta } from "@unhead/vue";
 
 export async function useLoadMeta(params?: Partial<MetaPostDTO>) {
   let meta = {} as MetaTag
@@ -10,8 +10,8 @@ export async function useLoadMeta(params?: Partial<MetaPostDTO>) {
     metaDto.type = params?.type ?? ''
     metaDto.slug = params?.slug ?? ''
     metaDto.city = params?.city
-      ?? useCookie('subdomain').value
-      ?? useStore().subdomain
+    ?? useCookie('subdomain').value
+    ?? useStore().subdomain
 
     meta = await Services.getMeta(metaDto)
   }

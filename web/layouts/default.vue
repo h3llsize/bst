@@ -2,16 +2,20 @@
 import Footer from '#/components/layouts/footer.vue'
 import Header from '#/components/layouts/header.vue'
 import CategoryBar from '#/components/layouts/category-bar.vue'
+import type { CartProduct } from '#/types/models'
+
 const hasDropdown = computed(() => useRoute().meta.hasDropdown)
 
-await useAsyncData('subdomain', async (app) => {
+await useAsyncData('initialize', async (app) => {
   const subdomain = app?.ssrContext?.event.context.subdomain
-  const hostname = app?.ssrContext?.event.context.hostname
+  const host = app?.ssrContext?.event.context.hostname
+  const cart = (useCookie(CART_KEY).value ?? []) as CartProduct[]
 
-  useStore().setDomainData(
+  useStore().$patch({
     subdomain,
-    hostname
-  )
+    host,
+    cart,
+  })
 
   return Promise.resolve()
 })

@@ -1,19 +1,19 @@
 <script lang='ts' setup>
 import { useRoute } from 'vue-router'
 import { RouteNames, RoutePaths } from '#/types/routes'
-import { useStore } from '~/store/bst.store'
+import { useStore } from '#/store/bst.store'
 
 const store = useStore()
 const route = useRoute()
 
 const model = defineModel()
 
-const categories = computed(() => store?.categories)
+const categories = computed(() => store.categories)
 
 const navItems = [
   {
     name: 'каталог',
-    route: RouteNames.Index,
+    route: RouteNames.Catalog,
   },
   {
     name: 'контакты',

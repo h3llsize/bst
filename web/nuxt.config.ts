@@ -5,7 +5,7 @@ import svgLoader from 'vite-svg-loader'
 export default defineNuxtConfig({
   ssr: true,
   experimental: {
-    appManifest: true
+    appManifest: true,
   },
   routeRules: {
     '/about': {

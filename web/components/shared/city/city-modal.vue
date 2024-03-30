@@ -59,7 +59,6 @@ function handleClick(event: MouseEvent) {
   </dialog>
 </template>
 
-
 <style lang='scss' scoped>
   .city__list {
   display: grid;

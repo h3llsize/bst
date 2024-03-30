@@ -5,79 +5,79 @@ import type { Category, City, MainCategory, Product, SubCategory } from '#/types
 
 class API {
   public static async getMainCategories() {
-    return api().get<APIResponse<MainCategory[]>>('category/main-categories').then(res => {
+    return api().get<APIResponse<MainCategory[]>>('category/main-categories').then((res) => {
       return { data: res.data.value }
     })
   }
 
   public static async getCategories(slug: string) {
-    return api().get<APIResponse<Category[]>>(`category/main-categories/get?slug=${slug}`).then(res => {
+    return api().get<APIResponse<Category[]>>(`category/main-categories/get?slug=${slug}`).then((res) => {
       return { data: res.data.value }
     })
   }
 
   public static async getCategory(slug: string) {
-    return api().get<APIResponse<Category[]>>(`category/categories?slug=${slug}`).then(res => {
+    return api().get<APIResponse<Category[]>>(`category/categories?slug=${slug}`).then((res) => {
       return { data: res.data.value }
     })
   }
 
   public static async getSubCategories(activePage: number, query: string) {
-    return api().get<APIResponse<PageableResponse<SubCategory[]>>>(`category/subcategory/search?page=${activePage - 1}&query=${query}`).then(res => {
+    return api().get<APIResponse<PageableResponse<SubCategory[]>>>(`category/subcategory/search?page=${activePage - 1}&query=${query}`).then((res) => {
       return { data: res.data.value }
     })
   }
 
   public static async getSubCategory(slug: string) {
-    return api().get<APIResponse<SubCategory>>(`category/subcategory/get?slug=${slug}`).then(res => {
+    return api().get<APIResponse<SubCategory>>(`category/subcategory/get?slug=${slug}`).then((res) => {
       return { data: res.data.value }
     })
   }
 
   public static async getProducts(dto: Dto) {
-    return api().post<APIResponse<PageableResponse<Product[]>>>('category/products-list', { body: {...dto.serialize()} }).then(res => {
+    return api().post<APIResponse<PageableResponse<Product[]>>>('category/products-list', { body: { ...dto.serialize() } }).then((res) => {
       return { data: res.data.value }
     })
   }
 
   public static async getProduct(id: number) {
-    return api().get<APIResponse<Product>>(`category/product/get?id=${id}`).then(res => {
+    return api().get<APIResponse<Product>>(`category/product/get?id=${id}`).then((res) => {
       return { data: res.data.value }
     })
   }
 
   public static async getProductBySlug(slug: string) {
-    return api().get<APIResponse<Product>>(`category/product?slug=${slug}`).then(res => {
+    return api().get<APIResponse<Product>>(`category/product?slug=${slug}`).then((res) => {
       return { data: res.data.value }
     })
   }
 
   public static async getFilters(id: number) {
-    return api().get<APIResponse<FilterCategory[]>>(`category/filters?categoryId=${id}`).then(res => {
+    return api().get<APIResponse<FilterCategory[]>>(`category/filters?categoryId=${id}`).then((res) => {
       return { data: res.data.value }
     })
   }
 
   public static async postFeedback(dto: Dto) {
-    return api().post<APIResponse<PageableResponse<string>>>('category/request', { body: {...dto.serialize()} }).then(res => {
+    return api().post<APIResponse<PageableResponse<string>>>('category/request', { body: { ...dto.serialize() } }).then((res) => {
       return { data: res.data.value }
     })
   }
 
   public static async getMeta(dto: Dto) {
-    return api().post<APIResponse<MetaTag>>('meta/get', { body: {...dto.serialize()} }).then(res => {
+    return api().post<APIResponse<MetaTag>>('meta/get', { body: { ...dto.serialize() } }).then((res) => {
       return { data: res.data.value }
     })
   }
 
   public static async getCities() {
-    return api().get<Promise<APIResponse<City[]>>>('city/all').then(res => {
+    return api().get<Promise<APIResponse<City[]>>>('city/all').then((res) => {
       return { data: res.data.value }
     })
   }
 
   public static async getStartData(activePage: number, query: string) {
-    return api().get<APIResponse<PageableResponse<SubCategory[]>>>(`category/subcategory/start?page=${activePage - 1}&query=${query}`).then(res => {
+    return api().get<APIResponse<PageableResponse<SubCategory[]>>>(`category/subcategory/start?page=${activePage - 1}&query=${query}`).then((res) => {
       return { data: res.data.value }
     })
   }
@@ -96,6 +96,7 @@ export class Services {
         return data
       })
   }
+
   public static getStartData(activePage: number, query: string): Promise<PageableResponse<SubCategory[]>> {
     return API.getStartData(activePage, query)
       .then((response: APIResponse<any>) => {

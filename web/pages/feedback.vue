@@ -1,6 +1,6 @@
 <script lang='ts' setup>
-import Feedback from "#/components/shared/feedback/feedback.vue";
-import { RouteNames } from "~/types/routes";
+import Feedback from '#/components/shared/feedback/feedback.vue'
+import { RouteNames } from '#/types/routes'
 
 void (await useLoadMeta({ type: RouteNames.Feedback })).applySeoMeta()
 </script>

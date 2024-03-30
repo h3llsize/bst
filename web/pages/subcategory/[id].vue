@@ -6,7 +6,7 @@ import { CatalogPostDTO, Services } from '#/utils/api'
 import { RouteNames } from '#/types/routes'
 import type { Product, SubCategory } from '#/types/models'
 import type { FilterCategory } from '#/types/common'
-import Skeleton from '~/components/shared/skeleton.vue'
+import Skeleton from '#/components/shared/skeleton.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -24,6 +24,7 @@ const subcategory = ref<SubCategory>({
   name: '',
   slug: '',
   imagePath: '',
+  products: [],
 })
 
 const products = ref<Product[]>([])
@@ -40,6 +41,7 @@ async function loadSubCategory() {
     name: '',
     slug: '',
     imagePath: '',
+    products: [],
   }
 
   products.value = []

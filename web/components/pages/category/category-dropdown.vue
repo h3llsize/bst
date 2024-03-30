@@ -1,6 +1,4 @@
 <script lang='ts' setup>
-import { Services } from '#/utils/api'
-
 import type { Category, MainCategory } from '#/types/models'
 import type { HoverData } from '#/types/common'
 
@@ -10,25 +8,10 @@ const props = defineProps<{ data: HoverData, categories: MainCategory[] }>()
 
 const items = ref<Category[]>([])
 const showDropdown = ref<boolean>(false)
-// const loading = ref<boolean>(false)
-
-const actualCategories = ref<{ data: Category[], slug: string }[]>([])
 
 function handleHover(state: boolean) {
   showDropdown.value = state
 }
-
-// function setCategories() {
-//   loading.value = true
-//   for (const i of props.categories) {
-//       Services.getCategories(i.slug).then(data => {
-//         actualCategories.value.push({ slug: i.slug, data: data?.slice(0, 10) })
-//       }).finally(() => {
-//         loading.value = false
-//       })
-//   }
-//   loading.value = false
-// }
 
 const show = computed(() => {
   return props.data.state || showDropdown.value
