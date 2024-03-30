@@ -14,12 +14,12 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), { hasBtn: true })
 const store = useStore()
 
-const product = computed<CartProduct>(() => store?.getProduct(props.id))
+const product = computed<CartProduct>(() => store.getProduct(props.id))
 
 const isShowPrice = computed(() => props.full && props.price > 299)
 
 function changeAmount(amount: number) {
-  store?.addProduct(props.id, product.value.amount + amount)
+  store.addProduct(props.id, product.value.amount + amount)
 }
 </script>
 
@@ -39,7 +39,7 @@ function changeAmount(amount: number) {
       от {{ (price * product.amount).toLocaleString() }} &#8381;
     </span>
 
-    <button
+    <div
       v-if="product.amount && hasBtn"
       class="product-card__count"
       @click.prevent="''"
@@ -59,7 +59,7 @@ function changeAmount(amount: number) {
       >
         <span class="arrow arrow_plus" />
       </button>
-    </button>
+    </div>
 
     <button
       v-if="!product.amount && hasBtn"

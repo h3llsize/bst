@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useRoute } from 'vue-router'
 import { RouteNames } from '#/types/routes'
 
 defineProps<{ direction: 'row' | 'column' }>()
@@ -8,7 +7,7 @@ const route = useRoute()
 
 const navItems = [{
   name: 'каталог',
-  route: RouteNames.Index,
+  route: RouteNames.Catalog,
 }, {
   name: 'контакты',
   route: RouteNames.Contacts,

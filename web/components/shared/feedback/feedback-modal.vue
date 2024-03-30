@@ -13,7 +13,7 @@ function handleClick(event: MouseEvent) {
 <template>
   <dialog
     class="feedback__modal modal"
-    :class="{ active }"
+    :class="{ active: model }"
     @click="handleClick"
   >
     <FeedbackForm

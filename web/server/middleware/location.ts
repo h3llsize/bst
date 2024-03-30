@@ -7,6 +7,6 @@ export default defineEventHandler((event) => {
   event.context.subdomain = subdomain
   event.context.hostname = hostname
 
-  setCookie(event, 'subdomain', subdomain)
-  setCookie(event, 'host', hostname)
+  setCookie(event, 'subdomain', subdomain, { sameSite: true })
+  setCookie(event, 'host', hostname, { sameSite: true })
 })

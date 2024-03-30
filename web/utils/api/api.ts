@@ -5,32 +5,19 @@ import type {
   KeysOf,
   PickFrom,
 } from '#app/composables/asyncData'
-import { useStore } from "~/store/bst.store";
-
-interface TAPIClientConstructor {
-  baseUrl?: string
-  simpleFetch?: boolean
-}
 
 export type TUseFetchReturnType<T> = AsyncData<
-    PickFrom<T, KeysOf<T>> | null,
-    any
+  PickFrom<T, KeysOf<T>> | null,
+  any
 >
 
 export class ApiClient {
   readonly config = useRuntimeConfig()
 
-  readonly baseUrl: string = this.config.public.apiUrl
-  readonly simpleFetch: boolean = false
-  static headers: Record<string, string> = {
-  }
+  readonly baseUrl: string = useRuntimeConfig().public.apiUrl
 
-  constructor({ baseUrl, simpleFetch }: TAPIClientConstructor) {
-    if (baseUrl)
-      this.baseUrl = baseUrl
-
-    if (simpleFetch)
-      this.simpleFetch = simpleFetch
+  constructor() {
+    this.baseUrl = useRuntimeConfig().public.apiUrl
   }
 
   private request<T>(
@@ -38,23 +25,13 @@ export class ApiClient {
     options?: UseFetchOptions<T>,
   ): TUseFetchReturnType<T> {
     const subdomain = useCookie('subdomain').value ?? useStore().subdomain
+
     return useFetch(url, {
       baseURL: `${this.baseUrl}/api/`,
       ...options,
-      //@ts-ignore
       headers: {
-        ...ApiClient.headers,
-        City: subdomain
+        City: subdomain,
       },
-    })
-  }
-
-  public $request<T>(url: string, options?: UseFetchOptions<T>): Promise<T> {
-    return $fetch(url, {
-      // @ts-expect-error
-      baseURL: `${this.baseUrl}`,
-      ...options,
-      headers: ApiClient.headers,
     })
   }
 
@@ -79,4 +56,4 @@ export class ApiClient {
   }
 }
 
-export const api = () => new ApiClient({})
+export const api = () => new ApiClient()

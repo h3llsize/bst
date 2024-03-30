@@ -1,13 +1,12 @@
 <script lang='ts' setup>
-import CatalogCategory from "#/components/pages/catalog/catalog-category.vue";
+import CatalogCategory from '#/components/pages/catalog/catalog-category.vue'
 
-import Search from "#/components/shared/search.vue";
-import Pagination from "#/components/shared/pagination.vue";
+import Search from '#/components/shared/search.vue'
+import Pagination from '#/components/shared/pagination.vue'
 
-import { Services } from "#/utils/api";
-import type { SubCategory } from "#/types/models";
-import Skeleton from "~/components/shared/skeleton.vue";
-import { RouteNames } from "~/types/routes";
+import { Services } from '#/utils/api'
+import type { SubCategory } from '#/types/models'
+import Skeleton from '#/components/shared/skeleton.vue'
 
 const catalogSubCategories = ref<SubCategory[] | null>(null)
 const activePage = ref<number>(1)
@@ -17,10 +16,12 @@ const showLoader = ref<boolean>(false)
 
 async function loadSubCategories() {
   showLoader.value = true
-  await Services.getStartData(activePage.value, searchValue.value).then((data) => {
-    catalogSubCategories.value = data?.content
-     pages.value = data?.totalPages
-  }).finally(() => showLoader.value = false)
+
+  const data = await Services.getStartData(activePage.value, searchValue.value)
+
+  catalogSubCategories.value = data?.content
+  pages.value = data?.totalPages
+  showLoader.value = false
 }
 
 function paginationClick(page: number) {
