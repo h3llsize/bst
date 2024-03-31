@@ -7,12 +7,12 @@ import com.bstbackend.bstbackend.handler.ProductLogicHandler;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/category")
 public class ProductController {
 
     private final ProductLogicHandler productLogicHandler;
