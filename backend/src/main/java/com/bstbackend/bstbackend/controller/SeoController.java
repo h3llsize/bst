@@ -19,7 +19,7 @@ public class SeoController {
     @GetMapping("/sitemap.xml")
     public ResponseEntity<String> requestSitemap(HttpServletRequest httpServletRequest) {
         String url = httpServletRequest.getRequestURL().toString().replaceAll("/sitemap.xml", "")
-                .replaceAll("/api", "").replaceAll("http", "https");
+                .replaceAll("/api", "").replaceAll("http", "https").replaceAll("/seo", "");
 
         return ResponseEntity.ok()
                 .header("Content-Type", "application/xml")
@@ -29,7 +29,7 @@ public class SeoController {
     @GetMapping("/sitemap.category.xml")
     public ResponseEntity<String> getSitemapCategory(HttpServletRequest httpServletRequest) {
         String url = httpServletRequest.getRequestURL().toString().replaceAll("/sitemap.category.xml", "")
-                .replaceAll("/api", "").replaceAll("http", "https");
+                .replaceAll("/api", "").replaceAll("http", "https").replaceAll("/seo", "");
 
         return ResponseEntity.ok()
                 .header("Content-Type", "application/xml")
@@ -39,7 +39,7 @@ public class SeoController {
     @GetMapping("/sitemap.subcategory.xml")
     private ResponseEntity<String> getSitemapSubcategory(HttpServletRequest httpServletRequest) {
         String url = httpServletRequest.getRequestURL().toString().replaceAll("/sitemap.subcategory.xml", "")
-                .replaceAll("/api", "").replaceAll("http", "https");
+                .replaceAll("/api", "").replaceAll("http", "https").replaceAll("/seo", "");
 
         return ResponseEntity.ok()
                 .header("Content-Type", "application/xml")
@@ -49,7 +49,7 @@ public class SeoController {
     @GetMapping("/sitemap.misc.xml")
     private ResponseEntity<String> getSitemapMisc(HttpServletRequest httpServletRequest) {
         String url = httpServletRequest.getRequestURL().toString().replaceAll("/sitemap.misc.xml", "")
-                .replaceAll("/api", "").replaceAll("http", "https");
+                .replaceAll("/api", "").replaceAll("http", "https").replaceAll("/seo", "");
 
         return ResponseEntity.ok()
                 .header("Content-Type", "application/xml")
@@ -59,7 +59,7 @@ public class SeoController {
     @GetMapping("/sitemap.product.xml")
     private ResponseEntity<String> getSitemapProducts(HttpServletRequest httpServletRequest) {
         String url = httpServletRequest.getRequestURL().toString().replaceAll("/sitemap.product.xml", "")
-                .replaceAll("/api", "").replaceAll("http", "https");
+                .replaceAll("/api", "").replaceAll("http", "https").replaceAll("/seo", "");
 
         return ResponseEntity.ok()
                 .header("Content-Type", "application/xml")
@@ -69,7 +69,7 @@ public class SeoController {
     @GetMapping("/robots.txt")
     private ResponseEntity<String> requestRobots(HttpServletRequest httpServletRequest) {
         String url = httpServletRequest.getRequestURL().toString().replaceAll("/robots.txt", "")
-                .replaceAll("/api", "").replaceAll("http", "https");
+                .replaceAll("/api", "").replaceAll("http", "https").replaceAll("/seo", "");
 
         return ResponseEntity.ok()
                 .header("Content-Type", "text/plain")
