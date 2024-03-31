@@ -12,10 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class MailService {
 
-    @Value("${email.login}")
     private String emailLogin;
 
-    @Value(("${email.password}"))
     private String emailPassword;
 
     public void sendToEmail(String text) {
