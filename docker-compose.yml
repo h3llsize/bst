@@ -1,9 +1,10 @@
 version: "3.1"
 services:
-  nginx:
-    build: nginx/
-    ports:
-      - "80:80"
+# TODO: rework
+#  nginx:
+#    build: nginx/
+#    ports:
+#      - "80:80"
   server:
     build: backend/
     ports:
