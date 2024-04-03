@@ -33,6 +33,7 @@
     "eslint": "8.57.0",
     "eslint-plugin-format": "^0.1.0",
     "nuxt": "3.11.1",
+    "nuxt-yandex-metrika": "^1.2.3",
     "sass": "1.72.0",
     "simple-git-hooks": "^2.11.1",
     "typescript": "5.4.3",

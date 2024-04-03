@@ -22,30 +22,6 @@ export default defineNuxtConfig({
     },
   },
 
-  app: {
-    head: {
-      script: [`
-    <!-- Yandex.Metrika counter -->
-   <script type="text/javascript" >
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();
-   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-   ym(96919439, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
-   });
-  </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/96919439" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-  <!-- /Yandex.Metrika counter -->
-  `],
-    },
-  },
-
   devServer: {
     port: 5173,
   },
@@ -57,6 +33,20 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiUrl: 'https://bst-sl.ru',
+    },
+  },
+
+  yandexMetrika: {
+    id: '96913254',
+    debug: process.env.NODE_ENV !== "production",
+    delay: 0,
+    cdn: false,
+    verification: false, // Verification in Yandex Webmaster
+    options: {
+      clickmap:true,
+      trackLinks:true,
+      accurateTrackBounce:true,
+      webvisor:true
     },
   },
 
@@ -73,7 +63,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@pinia/nuxt'],
+  modules: ['@pinia/nuxt', 'nuxt-yandex-metrika'],
 
   css: ['#/assets/scss/global.scss'],
 
