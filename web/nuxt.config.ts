@@ -37,7 +37,7 @@ export default defineNuxtConfig({
   },
 
   yandexMetrika: {
-    id: '96913254',
+    id: '96919439',
     delay: 0,
     cdn: false,
     verification: false, // Verification in Yandex Webmaster
