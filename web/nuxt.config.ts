@@ -36,20 +36,6 @@ export default defineNuxtConfig({
     },
   },
 
-  yandexMetrika: {
-    id: '96913254',
-    debug: process.env.NODE_ENV !== "production",
-    delay: 0,
-    cdn: false,
-    verification: false, // Verification in Yandex Webmaster
-    options: {
-      clickmap:true,
-      trackLinks:true,
-      accurateTrackBounce:true,
-      webvisor:true
-    },
-  },
-
   vite: {
     plugins: [svgLoader()],
     css: {
@@ -63,7 +49,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@pinia/nuxt', 'nuxt-yandex-metrika'],
+  modules: ['@pinia/nuxt'],
 
   css: ['#/assets/scss/global.scss'],
 
