@@ -38,15 +38,14 @@ export default defineNuxtConfig({
 
   yandexMetrika: {
     id: '96913254',
-    debug: process.env.NODE_ENV !== "production",
     delay: 0,
     cdn: false,
     verification: false, // Verification in Yandex Webmaster
     options: {
-      clickmap:true,
-      trackLinks:true,
-      accurateTrackBounce:true,
-      webvisor:true
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true,
     },
   },
 
