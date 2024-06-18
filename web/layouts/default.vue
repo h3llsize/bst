@@ -6,19 +6,16 @@ import type { CartProduct } from '#/types/models'
 
 const hasDropdown = computed(() => useRoute().meta.hasDropdown)
 
-await useAsyncData('initialize', async (app) => {
+const { data } = await useAsyncData('initialize', async (app) => {
   const subdomain = app?.ssrContext?.event.context.subdomain
   const host = app?.ssrContext?.event.context.hostname
   const cart = (useCookie(CART_KEY).value ?? []) as CartProduct[]
 
-  useStore().$patch({
-    subdomain,
-    host,
-    cart,
-  })
-
-  return Promise.resolve()
+  return { subdomain, host, cart }
 })
+
+if (data.value)
+  useStore().$patch(data.value)
 </script>
 
 <template>

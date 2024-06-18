@@ -8,8 +8,8 @@ const subdomain = useCookie('subdomain').value ?? useStore().subdomain
 const cities = await Services.getCities()
 
 const getCityName = computed<string>(() => {
-  const city = cities.filter(
-    city => city.domain === useCookie('subdomain').value,
+  const city = cities?.filter(
+    city => city.domain === subdomain,
   )
   if (city?.length > 0)
     return city[0].name
