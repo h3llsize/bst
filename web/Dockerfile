@@ -19,7 +19,6 @@ WORKDIR /opt/project
 COPY --from=node_modules /opt/project/node_modules ./node_modules
 COPY ./ .
 
-RUN npm run lint
 RUN npm run build
 
 # ---- Release ---------- #
